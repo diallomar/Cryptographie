@@ -26,6 +26,7 @@ public class DiffieHellman extends javax.swing.JFrame {
     public static File clePrivA;
     public static File clePrivB;
     public static File clePrivC;
+
     public DiffieHellman() {
         initComponents();
         user.setText(Login.us);
@@ -684,7 +685,7 @@ public class DiffieHellman extends javax.swing.JFrame {
             privKeyBName.setText("");
             privKeyCName.setText("");
             pathStoreKey.setText("");
-        } else if(selectItem.equals("3 parties (Alice, Bob et Charle)")){
+        } else if (selectItem.equals("3 parties (Alice, Bob et Charle)")) {
             selectedAlgo.setEnabled(true);
             privKeyB.setEnabled(true);
             privKeyA.setEnabled(true);
@@ -700,7 +701,7 @@ public class DiffieHellman extends javax.swing.JFrame {
             privKeyCName.setText("");
             pathStoreKey.setText("");
             pubKeyC.setText("Clé publique Charle");
-        }else{
+        } else {
             selectedAlgo.setEnabled(false);
             privKeyB.setEnabled(false);
             privKeyA.setEnabled(false);
@@ -733,41 +734,46 @@ public class DiffieHellman extends javax.swing.JFrame {
                 if (selectItem.equals("2 parties (Alice et Bob)")) {
                     clePubA = clePubC;
                     EchangeCleDH.getAndSaveSecretKeyDH2(clePrivA.getAbsolutePath(),
-                                                        clePubA.getAbsolutePath(),
-                                                       clePrivB.getAbsolutePath(), 
-                                                        clePubB.getAbsolutePath(),
-                                                        (String) selectedAlgo.getSelectedItem(), 
-                                                       fileToSave.getAbsolutePath());
-                    pathStoreKey.setText("Clé générée et enregistrée vers: "+fileToSave.getAbsolutePath());
-                } else if(selectItem.equals("3 parties (Alice, Bob et Charle)")){
-                    EchangeCleDH.getAndSaveSecretKeyDH3(clePrivA.getAbsolutePath(),
-                                                        clePubA.getAbsolutePath(),
-                                                       clePrivB.getAbsolutePath(), 
-                                                        clePubB.getAbsolutePath(),
-                                                        clePrivC.getAbsolutePath(), 
-                                                        clePubC.getAbsolutePath(), 
-                                                        (String) selectedAlgo.getSelectedItem(), 
-                                                       fileToSave.getAbsolutePath());
-                    pathStoreKey.setText("Clé générée et enregistrée vers: "+fileToSave.getAbsolutePath());
+                            clePubA.getAbsolutePath(),
+                            clePrivB.getAbsolutePath(),
+                            clePubB.getAbsolutePath(),
+                            (String) selectedAlgo.getSelectedItem(),
+                            fileToSave.getAbsolutePath());
+                    pathStoreKey.setText("Clé générée et enregistrée vers: " + fileToSave.getAbsolutePath());
                     Frame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Clé générée et enregistrée avec succés",
-                "Information",
-                JOptionPane.INFORMATION_MESSAGE);
-                }else{
-                Frame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Une erreur s'est produite.\nVeuillez vérifier les paramétres puis réessayer",
-                "Message d'erreur",
-                JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame,
+                            "Clé générée et enregistrée avec succés",
+                            "Information",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else if (selectItem.equals("3 parties (Alice, Bob et Charle)")) {
+                    EchangeCleDH.getAndSaveSecretKeyDH3(clePrivA.getAbsolutePath(),
+                            clePubA.getAbsolutePath(),
+                            clePrivB.getAbsolutePath(),
+                            clePubB.getAbsolutePath(),
+                            clePrivC.getAbsolutePath(),
+                            clePubC.getAbsolutePath(),
+                            (String) selectedAlgo.getSelectedItem(),
+                            fileToSave.getAbsolutePath());
+                    pathStoreKey.setText("Clé générée et enregistrée vers: " + fileToSave.getAbsolutePath());
+                    Frame frame = new JFrame("Exemple de boîte de dialogue");
+                    JOptionPane.showMessageDialog(frame,
+                            "Clé générée et enregistrée avec succés",
+                            "Information",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    Frame frame = new JFrame("Exemple de boîte de dialogue");
+                    JOptionPane.showMessageDialog(frame,
+                            "Une erreur s'est produite.\nVeuillez vérifier les paramétres puis réessayer",
+                            "Message d'erreur",
+                            JOptionPane.ERROR_MESSAGE);
                 }
 
-            }catch(Exception ex){
+            } catch (Exception ex) {
                 Frame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Une erreur s'est produite.\nVeuillez vérifier les paramétres puis réessayer",
-                "Message d'erreur",
-                JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(frame,
+                        "Une erreur s'est produite.\nVeuillez vérifier les paramétres puis réessayer",
+                        "Message d'erreur",
+                        JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
             }
         }
@@ -784,8 +790,8 @@ public class DiffieHellman extends javax.swing.JFrame {
         String selectItem = (String) selectedAlgo.getSelectedItem();
         if (!selectItem.equals("Algo de la clé secrète")) {
             generate.setEnabled(true);
-        }else{
-        generate.setEnabled(false);
+        } else {
+            generate.setEnabled(false);
         }
     }//GEN-LAST:event_selectedAlgoActionPerformed
 

@@ -293,7 +293,7 @@ public class Accueil extends javax.swing.JFrame {
         dispose();
         Chiffrement chiffrement = new Chiffrement();
         chiffrement.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed

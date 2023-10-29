@@ -10,8 +10,6 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import oumarDiallo.crypto.connexion.DataBase;
 
-
-
 /**
  *
  * @author diallomar
@@ -25,6 +23,7 @@ public class Login extends javax.swing.JFrame {
     private PreparedStatement pst;
     private ResultSet rst;
     public static String us;
+
     public Login() {
         initComponents();
         con = DataBase.connexion();
@@ -244,17 +243,17 @@ public class Login extends javax.swing.JFrame {
         us = username.getText();
         String pwd = password.getText();
         try {
-            
-            String sql = "SELECT * FROM users WHERE username =?";
-            
+
+            String sql = "SELECT * FROM utilisateurs WHERE username =?";
+
             pst = con.prepareCall(sql);
             pst.setString(1, us);
             rst = pst.executeQuery();
-            
+
             if (rst.next()) {
-                 String username1 = rst.getString("username");
-                 String password1 = rst.getString("password");
-                 
+                String username1 = rst.getString("username");
+                String password1 = rst.getString("password");
+
                 boolean b = DataBase.verifyPassword(pwd, password1);
                 System.out.println(b);
                 if (us.equals(username1) && b) {
@@ -262,20 +261,19 @@ public class Login extends javax.swing.JFrame {
                     Accueil accueil = new Accueil();
                     accueil.setVisible(true);
                 } else {
-                JOptionPane.showMessageDialog(rootPane, "Username et/ou password incorrect(s)", "Avertissement", JOptionPane.WARNING_MESSAGE );
+                    JOptionPane.showMessageDialog(rootPane, "Username et/ou password incorrect(s)", "Avertissement", JOptionPane.WARNING_MESSAGE);
                 }
-  
 
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Username et/ou password incorrect(s)", "Avertissement", JOptionPane.WARNING_MESSAGE );
+                JOptionPane.showMessageDialog(rootPane, "Username et/ou password incorrect(s)", "Avertissement", JOptionPane.WARNING_MESSAGE);
             }
-       
+
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(rootPane, "Username et/ou password incorrect(s)", "Avertissement", JOptionPane.WARNING_MESSAGE );
+            JOptionPane.showMessageDialog(rootPane, "Username et/ou password incorrect(s)", "Avertissement", JOptionPane.WARNING_MESSAGE);
         }
-        
-        
+
+
     }//GEN-LAST:event_loginActionPerformed
 
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
@@ -285,16 +283,16 @@ public class Login extends javax.swing.JFrame {
     private void creerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_creerMouseClicked
         // TODO add your handling code here:
         dispose();
-       new Registration().setVisible(true);
+        new Registration().setVisible(true);
     }//GEN-LAST:event_creerMouseClicked
 
     private void showPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordActionPerformed
         // TODO add your handling code here:
         if (showPassword.isSelected()) {
-                    password.setEchoChar((char) 0); // Afficher le texte brut
-                } else {
-                    password.setEchoChar('*'); // Masquer le texte en utilisant '*'
-                }
+            password.setEchoChar((char) 0); // Afficher le texte brut
+        } else {
+            password.setEchoChar('*'); // Masquer le texte en utilisant '*'
+        }
     }//GEN-LAST:event_showPasswordActionPerformed
 
     /**

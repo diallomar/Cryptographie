@@ -24,6 +24,7 @@ public class Registration extends javax.swing.JFrame {
     private PreparedStatement pst;
     private ResultSet rst;
     private Statement stm;
+
     public Registration() {
         initComponents();
         con = DataBase.connexion();
@@ -267,32 +268,30 @@ public class Registration extends javax.swing.JFrame {
         if (!us.isEmpty() && !pwd.isEmpty() && !confirm_pwd.isEmpty()) {
             String pwd_hashed = DataBase.hashPassword(pwd);
             if (pwd.equals(confirm_pwd)) {
-              
-               
-               
+
                 try {
 
-                        String sqlt = "INSERT INTO users(username, password) "
-                                + "VALUES('"+us+"','"+pwd_hashed+"')";
+                    String sqlt = "INSERT INTO utilisateurs(username, password) "
+                            + "VALUES('" + us + "','" + pwd_hashed + "')";
                     stm = con.createStatement();
                     stm.executeUpdate(sqlt);
 
-                    JOptionPane.showMessageDialog(rootPane, "Compte créer avec succés","Information",JOptionPane.INFORMATION_MESSAGE );
-                        dispose();
+                    JOptionPane.showMessageDialog(rootPane, "Compte créer avec succés", "Information", JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
                     new Login().setVisible(true);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(rootPane, "Username existant.\nVeuillez utiliser un autre nom d'utilisateur puis "
-                    + "réessayer","Avertissement",JOptionPane.WARNING_MESSAGE );
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(rootPane, "Username existant.\nVeuillez utiliser un autre nom d'utilisateur puis "
+                            + "réessayer", "Avertissement", JOptionPane.WARNING_MESSAGE);
 
-        }
+                }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Veuillez vérifier la confirmation du mot de passe.\nVeuillez réessayer","Information",JOptionPane.ERROR_MESSAGE );
+                JOptionPane.showMessageDialog(rootPane, "Veuillez vérifier la confirmation du mot de passe.\nVeuillez réessayer", "Information", JOptionPane.ERROR_MESSAGE);
             }
-            
-            } else {
-        JOptionPane.showMessageDialog(rootPane, "Assurer vous de remplir toute les Champs.\nVeuillez réessayer","Information",JOptionPane.ERROR_MESSAGE );
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Assurer vous de remplir toute les Champs.\nVeuillez réessayer", "Information", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_createActionPerformed
 
@@ -313,12 +312,12 @@ public class Registration extends javax.swing.JFrame {
     private void showPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordActionPerformed
         // TODO add your handling code here:
         if (showPassword.isSelected()) {
-                    password.setEchoChar((char) 0);
-                    confirmation.setEchoChar((char) 0);
-                } else {
-                    password.setEchoChar('*');
-                    confirmation.setEchoChar('*');
-                }
+            password.setEchoChar((char) 0);
+            confirmation.setEchoChar((char) 0);
+        } else {
+            password.setEchoChar('*');
+            confirmation.setEchoChar('*');
+        }
     }//GEN-LAST:event_showPasswordActionPerformed
 
     /**

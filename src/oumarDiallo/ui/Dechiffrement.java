@@ -26,6 +26,7 @@ public class Dechiffrement extends javax.swing.JFrame {
      */
     private static File fichierSelectione;
     private static File cleSelectione;
+
     public Dechiffrement() {
         initComponents();
         user.setText(Login.us);
@@ -445,7 +446,7 @@ public class Dechiffrement extends javax.swing.JFrame {
         dispose();
         GenKey genKey = new GenKey();
         genKey.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -472,28 +473,27 @@ public class Dechiffrement extends javax.swing.JFrame {
 
     private void TypeCipherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeCipherActionPerformed
         // TODO add your handling code here:
-        String [] symetrique = {"Algorithme","AES", "DES"};
-        String [] asymetrique = {"Algorithme","RSA", "DSA"};
-        String [] algorithme = {"Algorithme"};
+        String[] symetrique = {"Algorithme", "AES", "DES"};
+        String[] asymetrique = {"Algorithme", "RSA"};
+        String[] algorithme = {"Algorithme"};
         // Ajout d'un gestionnaire d'événements ActionListener à la JComboBox
 
         // Code pour gérer l'action lorsqu'un élément est sélectionné
-
         String selectedItem = (String) TypeCipher.getSelectedItem();
         if (selectedItem.equals("Symétrique")) {
-            AlgoSelected.setModel(new javax.swing.DefaultComboBoxModel<> (symetrique));
+            AlgoSelected.setModel(new javax.swing.DefaultComboBoxModel<>(symetrique));
             headerIndicator.setText("Veuillez choisir votre algorithme clé secrète ");
             keyName.setText("");
             fileName.setText("");
             pathStoreDecipher.setText("");
         } else if (selectedItem.equals("Asymétrique")) {
-            AlgoSelected.setModel(new javax.swing.DefaultComboBoxModel<> (asymetrique));
+            AlgoSelected.setModel(new javax.swing.DefaultComboBoxModel<>(asymetrique));
             headerIndicator.setText("Veuillez choisir votre algorithme clé publique ");
             keyName.setText("");
             fileName.setText("");
             pathStoreDecipher.setText("");
-        }else{
-            AlgoSelected.setModel(new javax.swing.DefaultComboBoxModel<> (algorithme));
+        } else {
+            AlgoSelected.setModel(new javax.swing.DefaultComboBoxModel<>(algorithme));
             headerIndicator.setText("Choisir votre type de déchiffrement");
             keyName.setText("");
             fileName.setText("");
@@ -533,9 +533,9 @@ public class Dechiffrement extends javax.swing.JFrame {
 
     private void decipherSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decipherSaveActionPerformed
         // TODO add your handling code here:
-        
+
         String selectedItem = (String) TypeCipher.getSelectedItem();
-        
+
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Enregistrer le fichier déchiffré");
         int returnValue = fileChooser.showSaveDialog(this);
@@ -544,72 +544,91 @@ public class Dechiffrement extends javax.swing.JFrame {
             try {
                 File fileToSave = fileChooser.getSelectedFile();
                 // Vous pouvez maintenant enregistrer le fichier dans le chemin spécifié (fileToSave)
-                
-                
-                 String algo = (String)AlgoSelected.getSelectedItem();
-           
-            if (selectedItem.equals("Symétrique")) {
-                try {
-                    
-                
-                SecretKey key = KeySymetrique.getSecretKey(cleSelectione.getAbsolutePath());
-                if (algo.equals(key.getAlgorithm())) {
-                    CipherDecipherInput.getAndSaveDecipherSymetrique(fichierSelectione.getAbsolutePath(),
-                fileToSave.getAbsolutePath(),
-                            key,
-                            algo); 
-                    fileName.setText("");
-                    keyName.setText("");
-                    pathStoreDecipher.setText("fichier déchiffré et enregistré vers: "+fileToSave.getAbsolutePath());
-                    JFrame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Déchiffrement effectué avec succés",
-                "Information",
-                JOptionPane.INFORMATION_MESSAGE);
-                }else{
-                    JFrame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Veuillez vérifier la clé et l'alogorithme choisi et réessayer.",
-                "Message d'erreur",
-                JOptionPane.ERROR_MESSAGE);
+
+                String algo = (String) AlgoSelected.getSelectedItem();
+
+                if (selectedItem.equals("Symétrique")) {
+                    try {
+
+                        SecretKey key = KeySymetrique.getSecretKey(cleSelectione.getAbsolutePath());
+                        if (algo.equals(key.getAlgorithm())) {
+                            CipherDecipherInput.getAndSaveDecipherSymetrique(fichierSelectione.getAbsolutePath(),
+                                    fileToSave.getAbsolutePath(),
+                                    key,
+                                    algo);
+                            fileName.setText("");
+                            keyName.setText("");
+                            pathStoreDecipher.setText("fichier déchiffré et enregistré vers: " + fileToSave.getAbsolutePath());
+                            JFrame frame = new JFrame("Exemple de boîte de dialogue");
+                            JOptionPane.showMessageDialog(frame,
+                                    "Déchiffrement effectué avec succés",
+                                    "Information",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            JFrame frame = new JFrame("Exemple de boîte de dialogue");
+                            JOptionPane.showMessageDialog(frame,
+                                    "Veuillez vérifier la clé et l'alogorithme choisi et réessayer.",
+                                    "Message d'erreur",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                    } catch (Exception e) {
+                        JFrame frame = new JFrame("Exemple de boîte de dialogue");
+                        JOptionPane.showMessageDialog(frame,
+                                "Une erreur s'est produite. \n Veuillez vérifier les paramètres",
+                                "Message d'erreur",
+                                JOptionPane.ERROR_MESSAGE);
+                        e.printStackTrace();
+                    }
+                } else if (selectedItem.equals("Asymétrique")) {
+                    try {
+                        PrivateKey pk = KeyAsymetrique.getPrivateKey(cleSelectione.getAbsolutePath());
+                        if (algo.equals(pk.getAlgorithm())) {
+                            CipherDecipherInput.getAndSaveDecipherAsymetrique(fichierSelectione.getAbsolutePath(),
+                                    fileToSave.getAbsolutePath(),
+                                    pk,
+                                    algo);
+                            fileName.setText("");
+                            keyName.setText("");
+                            pathStoreDecipher.setText("fichier déchiffré et enregistré vers: " + fileToSave.getAbsolutePath());
+                            JFrame frame = new JFrame("Exemple de boîte de dialogue");
+                            JOptionPane.showMessageDialog(frame,
+                                    "Déchiffrement effectué avec succés",
+                                    "Information",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            System.out.println("L'algo et la clé ne coincide pas, Veuillez réessayer.");
+                            JFrame frame = new JFrame("Exemple de boîte de dialogue");
+                            JOptionPane.showMessageDialog(frame,
+                                    "Veuillez vérifier la clé et l'alogorithme choisi et réessayer.",
+                                    "Message d'erreur",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                    } catch (Exception e) {
+
+                        System.out.println("Veuillez vérifier la clé et réessayer");
+                        PrivateKey pkr = KeyAsymetrique.getPrivateKey(cleSelectione.getAbsolutePath());
+                        System.out.println(pkr.getAlgorithm());
+                        e.printStackTrace();
+                        JFrame frame = new JFrame("Exemple de boîte de dialogue");
+                        JOptionPane.showMessageDialog(frame,
+                                "Une erreur s'est produite. \n Veuillez vérifier les paramètres",
+                                "Message d'erreur",
+                                JOptionPane.ERROR_MESSAGE);
+                        e.printStackTrace();
+                    }
+
+                } else {
+                    System.out.println("Veuillez vérifier l'algorithme et réessayer.");
                 }
-                } catch (Exception e) {
-                     JFrame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Une erreur s'est produite. \n Veuillez vérifier les paramètres",
-                "Message d'erreur",
-                JOptionPane.ERROR_MESSAGE);
-                         e.printStackTrace();
-                }
-            }else if (selectedItem.equals("Asymétrique")){
-                try {
-                    PrivateKey pk = KeyAsymetrique.getPrivateKey(cleSelectione.getAbsolutePath());
-                     if (algo.equals(pk.getAlgorithm())) {
-                    CipherDecipherInput.getAndSaveDecipherAsymetrique(fichierSelectione.getAbsolutePath(),
-                fileToSave.getAbsolutePath(),
-                            pk,
-                            algo); 
-                    fileName.setText("");
-                    keyName.setText("");
-                    pathStoreDecipher.setText("fichier déchiffré et enregistré vers: "+fileToSave.getAbsolutePath());
-                }else{
-                System.out.println("L'algo et la clé ne coincide pas, Veuillez réessayer.");
-                }
-                } catch (Exception e) {
-                    
-                    System.out.println("Veuillez vérifier la clé et réessayer");
-                    PrivateKey pkr = KeyAsymetrique.getPrivateKey(cleSelectione.getAbsolutePath());
-                    System.out.println(pkr.getAlgorithm());
-                    e.printStackTrace();
-                }
-                
-            }else{
-                System.out.println("Veuillez vérifier l'algorithme et réessayer.");
-            }
                 // Utilisez les classes Java pour écrire le fichier, par exemple FileWriter ou FileOutputStream.
             } catch (Exception ex) {
                 // Gérer les erreurs d'enregistrement ici
                 ex.printStackTrace();
+                JFrame frame = new JFrame("Exemple de boîte de dialogue");
+                JOptionPane.showMessageDialog(frame,
+                        "Une erreur s'est produite. \n Veuillez vérifier les paramètres",
+                        "Message d'erreur",
+                        JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_decipherSaveActionPerformed

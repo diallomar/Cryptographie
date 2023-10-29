@@ -20,14 +20,15 @@ public class DataBase {
     public static Connection connexion(){
     Connection con = null;
         try {
-            Class.forName("org.postgresql.Driver");
-            con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/oumarDiallo", "postgres", "1206");
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/oumardiallo", "root", "");
+            return con;
         } catch (Exception e) {
-            System.out.println(e);
+           e.printStackTrace();
+            return con;
         }
-    return con;
     }
-    
+     
     public static String hashPassword(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");
@@ -63,6 +64,6 @@ public class DataBase {
         return false;
     }
      public static void main(String[] args) {
-        
+         System.out.println(DataBase.connexion());
     }
 }

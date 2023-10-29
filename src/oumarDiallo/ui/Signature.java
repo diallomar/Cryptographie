@@ -4,7 +4,6 @@
  */
 package oumarDiallo.ui;
 
-
 import java.awt.Frame;
 import java.io.File;
 import java.util.logging.Level;
@@ -27,6 +26,7 @@ public class Signature extends javax.swing.JFrame {
     private static File signature;
     private static File cle;
     private static String avertissementCle;
+
     public Signature() {
         initComponents();
         user.setText(Login.us);
@@ -516,7 +516,7 @@ public class Signature extends javax.swing.JFrame {
 
     private void signOrVerifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOrVerifActionPerformed
         // TODO add your handling code here:
-        
+
         String selectItem = (String) signOrVerif.getSelectedItem();
         if (selectItem.equals("Signature")) {
             sgnedFile.setEnabled(false);
@@ -531,9 +531,9 @@ public class Signature extends javax.swing.JFrame {
             fileName.setText("");
             signedFileName.setText("");
             pathStoreSign.setText("");
-            selectedAlgo.setModel(new javax.swing.DefaultComboBoxModel <> (new String []{"Algorithme","RSA","DSA","ECDSA"}));
+            selectedAlgo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Algorithme", "RSA", "DSA", "ECDSA"}));
 
-        }else if(selectItem.equals("Vérification")){
+        } else if (selectItem.equals("Vérification")) {
             sgnedFile.setEnabled(true);
             key.setText("Clé publique");
             key.setEnabled(true);
@@ -546,7 +546,7 @@ public class Signature extends javax.swing.JFrame {
             fileName.setText("");
             signedFileName.setText("");
             pathStoreSign.setText("");
-            selectedAlgo.setModel(new javax.swing.DefaultComboBoxModel <> (new String []{"Algorithme","RSA","DSA","ECDSA"}));
+            selectedAlgo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Algorithme", "RSA", "DSA", "ECDSA"}));
         } else {
             sgnedFile.setEnabled(false);
             key.setText("Clé privée");
@@ -560,7 +560,7 @@ public class Signature extends javax.swing.JFrame {
             fileName.setText("");
             signedFileName.setText("");
             pathStoreSign.setText("");
-            selectedAlgo.setModel(new javax.swing.DefaultComboBoxModel <> (new String []{"Algorithme"}));
+            selectedAlgo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Algorithme"}));
         }
     }//GEN-LAST:event_signOrVerifActionPerformed
 
@@ -595,160 +595,160 @@ public class Signature extends javax.swing.JFrame {
     private void signActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signActionPerformed
         // TODO add your handling code here:
         String selectItem = (String) signOrVerif.getSelectedItem();
-        
-        JFileChooser fileChooser = new JFileChooser();
-       fileChooser.setDialogTitle("Enregistrer le fichier signé");
 
-    int returnValue = fileChooser.showSaveDialog(this);
-    
-    if (returnValue == JFileChooser.APPROVE_OPTION) {
-        try {
-            File fileToSave = fileChooser.getSelectedFile();
-            
-            if (cle.getName().endsWith("key")) {
-                
-                switch ((String) selectedAlgo.getSelectedItem()) {
-                    case "RSA": 
-                        SignatureInput.getAndSaveSignature(fileToSign.getAbsolutePath(),
-                                                                cle.getAbsolutePath(), 
-                                                                fileToSave.getAbsolutePath(), "SHA512withRSA");
-                        pathStoreSign.setText("Fichier signé et enregistré vers: "+ fileToSave.getAbsolutePath());
-                        
-                         JOptionPane.showMessageDialog(null,
-                "fichier signé et enregistrée avec succés",
-                "Information",
-                JOptionPane.INFORMATION_MESSAGE);
-                        break;
-                    case "DSA":
-                        SignatureInput.getAndSaveSignature(fileToSign.getAbsolutePath(),
-                                                                cle.getAbsolutePath(), 
-                                                                fileToSave.getAbsolutePath(), "SHA512withDSA");
-                        pathStoreSign.setText("Fichier signé et enregistré vers: "+ fileToSave.getAbsolutePath());
-                       
-                         JOptionPane.showMessageDialog(null,
-                "fichier signé et enregistrée avec succés",
-                "Information",
-                JOptionPane.INFORMATION_MESSAGE);
-                        break;
-                    case "ECDSA":
-                        SignatureInput.getAndSaveSignature(fileToSign.getAbsolutePath(),
-                                                                cle.getAbsolutePath(), 
-                                                                fileToSave.getAbsolutePath(), "ECDSA");
-                        pathStoreSign.setText("Fichier signé et enregistré vers: "+ fileToSave.getAbsolutePath());
-                        
-                         JOptionPane.showMessageDialog(null,
-                "fichier signé et enregistrée avec succés",
-                "Information",
-                JOptionPane.INFORMATION_MESSAGE);
-                    break;
-                default:
-                    
-                         JOptionPane.showMessageDialog(null,
-                "Une erreur s'est produite\n"
-                        + "Veuiller choisir l'algorithme puis réessayer",
-                "Avertissement",
-                JOptionPane.ERROR_MESSAGE);
-                         break;
-            }
-                
-            } else {
-            
-            JFrame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Veuiller revoir votre clé privée puis réessayer\n"
-                        + "Assurez-vous que l'extension de la clé est .key",
-                "Avertissement",
-                JOptionPane.ERROR_MESSAGE);
-            }
-            
-        }catch(Exception ex){
-            JFrame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Une erreur s'est produite\n"
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Enregistrer le fichier signé");
+
+        int returnValue = fileChooser.showSaveDialog(this);
+
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            try {
+                File fileToSave = fileChooser.getSelectedFile();
+
+                if (cle.getName().endsWith("key")) {
+
+                    switch ((String) selectedAlgo.getSelectedItem()) {
+                        case "RSA":
+                            SignatureInput.getAndSaveSignature(fileToSign.getAbsolutePath(),
+                                    cle.getAbsolutePath(),
+                                    fileToSave.getAbsolutePath(), "SHA512withRSA");
+                            pathStoreSign.setText("Fichier signé et enregistré vers: " + fileToSave.getAbsolutePath());
+
+                            JOptionPane.showMessageDialog(null,
+                                    "fichier signé et enregistrée avec succés",
+                                    "Information",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        case "DSA":
+                            SignatureInput.getAndSaveSignature(fileToSign.getAbsolutePath(),
+                                    cle.getAbsolutePath(),
+                                    fileToSave.getAbsolutePath(), "SHA512withDSA");
+                            pathStoreSign.setText("Fichier signé et enregistré vers: " + fileToSave.getAbsolutePath());
+
+                            JOptionPane.showMessageDialog(null,
+                                    "fichier signé et enregistrée avec succés",
+                                    "Information",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        case "ECDSA":
+                            SignatureInput.getAndSaveSignature(fileToSign.getAbsolutePath(),
+                                    cle.getAbsolutePath(),
+                                    fileToSave.getAbsolutePath(), "ECDSA");
+                            pathStoreSign.setText("Fichier signé et enregistré vers: " + fileToSave.getAbsolutePath());
+
+                            JOptionPane.showMessageDialog(null,
+                                    "fichier signé et enregistrée avec succés",
+                                    "Information",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        default:
+
+                            JOptionPane.showMessageDialog(null,
+                                    "Une erreur s'est produite\n"
+                                    + "Veuiller choisir l'algorithme puis réessayer",
+                                    "Avertissement",
+                                    JOptionPane.ERROR_MESSAGE);
+                            break;
+                    }
+
+                } else {
+
+                    JFrame frame = new JFrame("Exemple de boîte de dialogue");
+                    JOptionPane.showMessageDialog(frame,
+                            "Veuiller revoir votre clé privée puis réessayer\n"
+                            + "Assurez-vous que l'extension de la clé est .key",
+                            "Avertissement",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (Exception ex) {
+                JFrame frame = new JFrame("Exemple de boîte de dialogue");
+                JOptionPane.showMessageDialog(frame,
+                        "Une erreur s'est produite\n"
                         + "Veuillez choisir de bons paramètres puis réessayer",
-                "Avertissement",
-                JOptionPane.ERROR_MESSAGE);
+                        "Avertissement",
+                        JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
+            }
         }
-    }
     }//GEN-LAST:event_signActionPerformed
 
     private void sgnedFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sgnedFileActionPerformed
         // TODO add your handling code here:
-         JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("importer la clé de chiffrement");
 
-    int returnValue = fileChooser.showOpenDialog(this);
+        int returnValue = fileChooser.showOpenDialog(this);
 
-    if (returnValue == JFileChooser.APPROVE_OPTION) {
-        signature = fileChooser.getSelectedFile();
-        // Vous pouvez maintenant utiliser le "selectedFile" pour traiter le fichier
-        signedFileName.setText(signature.getName());
-    }
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            signature = fileChooser.getSelectedFile();
+            // Vous pouvez maintenant utiliser le "selectedFile" pour traiter le fichier
+            signedFileName.setText(signature.getName());
+        }
     }//GEN-LAST:event_sgnedFileActionPerformed
 
     private void verifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifActionPerformed
         try {
             // TODO add your handling code here:
             if (cle.getName().endsWith("pub")) {
-                
+
                 boolean b = false;
-            switch ((String) selectedAlgo.getSelectedItem()) {
-                case "RSA":
-                    b = SignatureInput.getAndCheckSignature(fileToSign.getAbsolutePath(),
-                            signature.getAbsolutePath(),
-                            cle.getAbsolutePath(), "SHA512withRSA");
-                    break;
-                case "DSA":
-                    b = SignatureInput.getAndCheckSignature(fileToSign.getAbsolutePath(),
-                            signature.getAbsolutePath(),
-                            cle.getAbsolutePath(), "SHA512withDSA");
-                    break;
-                case "ECDSA":
-                    b = SignatureInput.getAndCheckSignature(fileToSign.getAbsolutePath(),
-                            signature.getAbsolutePath(),
-                            cle.getAbsolutePath(), "ECDSA");
-                    break;
-                default:
-                    JFrame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Une erreur s'est produite.\n Veuiller choisir l'algorithme puis réessayer",
-                "Avertissement",
-                JOptionPane.ERROR_MESSAGE);
-                         break;
-                    
-            }
-            if (b == true) {
+                switch ((String) selectedAlgo.getSelectedItem()) {
+                    case "RSA":
+                        b = SignatureInput.getAndCheckSignature(fileToSign.getAbsolutePath(),
+                                signature.getAbsolutePath(),
+                                cle.getAbsolutePath(), "SHA512withRSA");
+                        break;
+                    case "DSA":
+                        b = SignatureInput.getAndCheckSignature(fileToSign.getAbsolutePath(),
+                                signature.getAbsolutePath(),
+                                cle.getAbsolutePath(), "SHA512withDSA");
+                        break;
+                    case "ECDSA":
+                        b = SignatureInput.getAndCheckSignature(fileToSign.getAbsolutePath(),
+                                signature.getAbsolutePath(),
+                                cle.getAbsolutePath(), "ECDSA");
+                        break;
+                    default:
                         JFrame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Correspondance trouvée",
-                "Information",
-                JOptionPane.INFORMATION_MESSAGE);
-                    } else {
-                JFrame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Correspondance non trouvée",
-                "Avertissement",
-                JOptionPane.WARNING_MESSAGE);
-                    }
-                
+                        JOptionPane.showMessageDialog(frame,
+                                "Une erreur s'est produite.\n Veuiller choisir l'algorithme puis réessayer",
+                                "Avertissement",
+                                JOptionPane.ERROR_MESSAGE);
+                        break;
+
+                }
+                if (b == true) {
+                    JFrame frame = new JFrame("Exemple de boîte de dialogue");
+                    JOptionPane.showMessageDialog(frame,
+                            "Correspondance trouvée",
+                            "Information",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JFrame frame = new JFrame("Exemple de boîte de dialogue");
+                    JOptionPane.showMessageDialog(frame,
+                            "Correspondance non trouvée",
+                            "Avertissement",
+                            JOptionPane.WARNING_MESSAGE);
+                }
+
             } else {
                 JFrame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Veuiller revoir votre clé publique puis réessayer.\n Assurez-vous que l'extension de la clé est .pub",
-                "Avertissement",
-                JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(frame,
+                        "Veuiller revoir votre clé publique puis réessayer.\n Assurez-vous que l'extension de la clé est .pub",
+                        "Avertissement",
+                        JOptionPane.ERROR_MESSAGE);
             }
-            
+
         } catch (Exception ex) {
             JFrame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Une erreur s'est produite\n"
-                        + "Veuillez choisir de bons paramètres puis réessayer",
-                "Avertissement",
-                JOptionPane.ERROR_MESSAGE);
-                         
-                ex.printStackTrace();
+            JOptionPane.showMessageDialog(frame,
+                    "Une erreur s'est produite\n"
+                    + "Veuillez choisir de bons paramètres puis réessayer",
+                    "Avertissement",
+                    JOptionPane.ERROR_MESSAGE);
+
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_verifActionPerformed
 

@@ -439,62 +439,62 @@ public class GenKey extends javax.swing.JFrame {
 
     private void selectedAlgoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectedAlgoActionPerformed
         // TODO add your handling code here:
-       String [] tailleAES = {"Taille de la clé en bits","128", "192", "256"};
-       String [] tailleDES = {"Taille de la clé en bits","56"};
-       String [] tailleRSA = {"Taille de la clé en bits","1024","2048","3072","4096"};
-       String [] tailleDSA = {"Taille de la clé en bits","512","1024","2048","3072"};
-       String [] tailleECDSA = {"Taille de la clé en bits","256","384","521"};
-       String [] tailleCLE = {"Taille de la clé en bits"};
-       String [] tailleDH = {"Taille de la clé en bits","1024","2048","3072", "4096"};
-    // Ajout d'un gestionnaire d'événements ActionListener à la JComboBox
-            // Code pour gérer l'action lorsqu'un élément est sélectionné
-            String selectedItem = (String) selectedAlgo.getSelectedItem();
-            if (selectedItem.equals("AES")) {
-                
-                tailleKey.setModel(new javax.swing.DefaultComboBoxModel<>(tailleAES));
-            } else if (selectedItem.equals("DES")) {  
-                tailleKey.setModel(new javax.swing.DefaultComboBoxModel<> (tailleDES));
-            }else if (selectedItem.equals("RSA")){
-             tailleKey.setModel(new javax.swing.DefaultComboBoxModel<> (tailleRSA));   
-        }else if (selectedItem.equals("DSA")){
-             tailleKey.setModel(new javax.swing.DefaultComboBoxModel<> (tailleDSA)); 
-        }else if(selectedItem.equals("DH")){
-            tailleKey.setModel(new javax.swing.DefaultComboBoxModel<> (tailleDH));
-        }else if(selectedItem.equals("ECDSA")){
-            tailleKey.setModel(new javax.swing.DefaultComboBoxModel<> (tailleECDSA));
-        }else{
-            tailleKey.setModel(new javax.swing.DefaultComboBoxModel<> (tailleCLE));
+        String[] tailleAES = {"Taille de la clé en bits", "128", "192", "256"};
+        String[] tailleDES = {"Taille de la clé en bits", "56"};
+        String[] tailleRSA = {"Taille de la clé en bits", "1024", "2048", "3072", "4096"};
+        String[] tailleDSA = {"Taille de la clé en bits", "512", "1024", "2048", "3072"};
+        String[] tailleECDSA = {"Taille de la clé en bits", "256", "384", "521"};
+        String[] tailleCLE = {"Taille de la clé en bits"};
+        String[] tailleDH = {"Taille de la clé en bits", "1024", "2048", "3072", "4096"};
+        // Ajout d'un gestionnaire d'événements ActionListener à la JComboBox
+        // Code pour gérer l'action lorsqu'un élément est sélectionné
+        String selectedItem = (String) selectedAlgo.getSelectedItem();
+        if (selectedItem.equals("AES")) {
+
+            tailleKey.setModel(new javax.swing.DefaultComboBoxModel<>(tailleAES));
+        } else if (selectedItem.equals("DES")) {
+            tailleKey.setModel(new javax.swing.DefaultComboBoxModel<>(tailleDES));
+        } else if (selectedItem.equals("RSA")) {
+            tailleKey.setModel(new javax.swing.DefaultComboBoxModel<>(tailleRSA));
+        } else if (selectedItem.equals("DSA")) {
+            tailleKey.setModel(new javax.swing.DefaultComboBoxModel<>(tailleDSA));
+        } else if (selectedItem.equals("DH")) {
+            tailleKey.setModel(new javax.swing.DefaultComboBoxModel<>(tailleDH));
+        } else if (selectedItem.equals("ECDSA")) {
+            tailleKey.setModel(new javax.swing.DefaultComboBoxModel<>(tailleECDSA));
+        } else {
+            tailleKey.setModel(new javax.swing.DefaultComboBoxModel<>(tailleCLE));
             pathStoreKey.setText("");
         }
     }//GEN-LAST:event_selectedAlgoActionPerformed
 
     private void typeKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeKeyActionPerformed
         // TODO add your handling code here:   
-       String [] symetrique = {"Clé Secrète","AES", "DES"};
-       String [] asymetrique = {"Clé Asymétrique","RSA", "DSA","ECDSA","DH"};
-       String [] algorithme = {"Algorithme"};
-       String [] tailleCLE = {"Taille de la clé en bits"};
-    // Ajout d'un gestionnaire d'événements ActionListener à la JComboBox
- 
-            // Code pour gérer l'action lorsqu'un élément est sélectionné
-                JComboBox jcb = new JComboBox();
-                jcb = selectedAlgo;
-            
-            String selectedItem = (String) typeKey.getSelectedItem();
-            if (selectedItem.equals("Symétrique")) {
-                selectedAlgo.setModel(new javax.swing.DefaultComboBoxModel<> (symetrique));
-                tailleKey.setModel(new javax.swing.DefaultComboBoxModel<> (tailleCLE));
-                pathStoreKey.setText("");
-            } else if (selectedItem.equals("Asymétrique")) {  
-                selectedAlgo.setModel(new javax.swing.DefaultComboBoxModel<> (asymetrique));
-                tailleKey.setModel(new javax.swing.DefaultComboBoxModel<> (tailleCLE));
-                pathStoreKey.setText("");
-            }else{
-                selectedAlgo.setModel(new javax.swing.DefaultComboBoxModel<> (algorithme));
-                tailleKey.setModel(new javax.swing.DefaultComboBoxModel<> (tailleCLE));
-                pathStoreKey.setText("");
+        String[] symetrique = {"Clé Secrète", "AES", "DES"};
+        String[] asymetrique = {"Clé Asymétrique", "RSA", "DSA", "ECDSA", "DH"};
+        String[] algorithme = {"Algorithme"};
+        String[] tailleCLE = {"Taille de la clé en bits"};
+        // Ajout d'un gestionnaire d'événements ActionListener à la JComboBox
+
+        // Code pour gérer l'action lorsqu'un élément est sélectionné
+        JComboBox jcb = new JComboBox();
+        jcb = selectedAlgo;
+
+        String selectedItem = (String) typeKey.getSelectedItem();
+        if (selectedItem.equals("Symétrique")) {
+            selectedAlgo.setModel(new javax.swing.DefaultComboBoxModel<>(symetrique));
+            tailleKey.setModel(new javax.swing.DefaultComboBoxModel<>(tailleCLE));
+            pathStoreKey.setText("");
+        } else if (selectedItem.equals("Asymétrique")) {
+            selectedAlgo.setModel(new javax.swing.DefaultComboBoxModel<>(asymetrique));
+            tailleKey.setModel(new javax.swing.DefaultComboBoxModel<>(tailleCLE));
+            pathStoreKey.setText("");
+        } else {
+            selectedAlgo.setModel(new javax.swing.DefaultComboBoxModel<>(algorithme));
+            tailleKey.setModel(new javax.swing.DefaultComboBoxModel<>(tailleCLE));
+            pathStoreKey.setText("");
         }
-    
+
     }//GEN-LAST:event_typeKeyActionPerformed
 
     private void tailleKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tailleKeyActionPerformed
@@ -502,77 +502,76 @@ public class GenKey extends javax.swing.JFrame {
         pathStoreKey.setText("");
         if (!"Taille de la clé en bits".equals((String) tailleKey.getSelectedItem())) {
             generateSave.setEnabled(true);
-        }else{
+        } else {
             generateSave.setEnabled(false);
         }
-        
+
     }//GEN-LAST:event_tailleKeyActionPerformed
 
     private void generateSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateSaveActionPerformed
         // TODO add your handling code here:
         pathStoreKey.setText("");
-        
+
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Enregistrer la clé générée");
-    int returnValue = fileChooser.showSaveDialog(this);
-       
-    if (returnValue == JFileChooser.APPROVE_OPTION) {
-        try {
-            File fileToSave = fileChooser.getSelectedFile();
-            
-            String typeAlgo = (String) typeKey.getSelectedItem();
-            if (typeAlgo.equals("Symétrique")) {
-                KeySymetrique.genAndSaveKey((String) selectedAlgo.getSelectedItem(),Integer.parseInt((String) tailleKey.getSelectedItem()), fileToSave.getPath());
-                pathStoreKey.setText("Clé généré et enregistré vers: "+fileToSave.getPath());
-                
-                JFrame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Clé générée avec succés",
-                "Information",
-                JOptionPane.INFORMATION_MESSAGE);
-                
-            }else if (typeAlgo.equals("Asymétrique")) {
-                String select = (String) selectedAlgo.getSelectedItem();
-                if (select.equals("ECDSA")) {
-                    KeyAsymetrique.generateANdSaveECDSAKeyPair(fileToSave.getPath(),Integer.parseInt((String) tailleKey.getSelectedItem()));
-                    pathStoreKey.setText("Clé généré et enregistré vers: "+fileToSave.getPath());
-                
-                JFrame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Paire de clé générées avec succés",
-                "Information",
-                JOptionPane.INFORMATION_MESSAGE);
+        int returnValue = fileChooser.showSaveDialog(this);
+
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            try {
+                File fileToSave = fileChooser.getSelectedFile();
+
+                String typeAlgo = (String) typeKey.getSelectedItem();
+                if (typeAlgo.equals("Symétrique")) {
+                    KeySymetrique.genAndSaveKey((String) selectedAlgo.getSelectedItem(), Integer.parseInt((String) tailleKey.getSelectedItem()), fileToSave.getPath());
+                    pathStoreKey.setText("Clé généré et enregistré vers: " + fileToSave.getPath());
+
+                    JFrame frame = new JFrame("Exemple de boîte de dialogue");
+                    JOptionPane.showMessageDialog(frame,
+                            "Clé générée avec succés",
+                            "Information",
+                            JOptionPane.INFORMATION_MESSAGE);
+
+                } else if (typeAlgo.equals("Asymétrique")) {
+                    String select = (String) selectedAlgo.getSelectedItem();
+                    if (select.equals("ECDSA")) {
+                        KeyAsymetrique.generateANdSaveECDSAKeyPair(fileToSave.getPath(), Integer.parseInt((String) tailleKey.getSelectedItem()));
+                        pathStoreKey.setText("Clé généré et enregistré vers: " + fileToSave.getPath());
+
+                        JFrame frame = new JFrame("Exemple de boîte de dialogue");
+                        JOptionPane.showMessageDialog(frame,
+                                "Paire de clé générées avec succés",
+                                "Information",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        KeyPair kp = KeyAsymetrique.genKey((String) selectedAlgo.getSelectedItem(), Integer.parseInt((String) tailleKey.getSelectedItem()));
+                        KeyAsymetrique.saveKey(kp, fileToSave.getPath());
+                        pathStoreKey.setText("Clé généré et enregistré vers: " + fileToSave.getPath());
+
+                        JFrame frame = new JFrame("Exemple de boîte de dialogue");
+                        JOptionPane.showMessageDialog(frame,
+                                "Paire de clé générées avec succés",
+                                "Information",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    }
+
                 } else {
-                KeyPair kp = KeyAsymetrique.genKey((String) selectedAlgo.getSelectedItem(), Integer.parseInt((String) tailleKey.getSelectedItem()));
-                KeyAsymetrique.saveKey(kp, fileToSave.getPath());
-                pathStoreKey.setText("Clé généré et enregistré vers: "+fileToSave.getPath());
-                
-                JFrame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Paire de clé générées avec succés",
-                "Information",
-                JOptionPane.INFORMATION_MESSAGE);
+                    Frame frame = new JFrame("Exemple de boîte de dialogue");
+                    JOptionPane.showMessageDialog(frame,
+                            "Une erreur s'est produite.\nVeuillez vérifier votre sélection puis réessayer",
+                            "Information",
+                            JOptionPane.ERROR_MESSAGE);
                 }
-                
-            }else{
+
+            } catch (Exception ex) {
+                // Gérer les erreurs d'enregistrement ici
                 Frame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Une erreur s'est produite.\nVeuillez vérifier votre sélection puis réessayer",
-                "Information",
-                JOptionPane.ERROR_MESSAGE);
-            }
-             
-            
-        } catch (Exception ex) {
-            // Gérer les erreurs d'enregistrement ici
-           Frame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Une erreur s'est produite.\nVeuillez vérifier les paramétres puis réessayer",
-                "Information",
-                JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(frame,
+                        "Une erreur s'est produite.\nVeuillez vérifier les paramétres puis réessayer",
+                        "Information",
+                        JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
+            }
         }
-    }
     }//GEN-LAST:event_generateSaveActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed

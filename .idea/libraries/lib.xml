@@ -3,8 +3,8 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/dist/lib/bcprov-jdk15-141.jar!/" />
       <root url="jar://$PROJECT_DIR$/dist/lib/postgresql-42.2.5.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dist/lib/mysql-connector-java-5.1.14-bin.jar!/" />
       <root url="jar://$PROJECT_DIR$/dist/lib/AbsoluteLayout.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/mysql-connector-j-8.1.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

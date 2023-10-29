@@ -504,26 +504,26 @@ public class Hachage extends javax.swing.JFrame {
 
     private void typeKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeKeyActionPerformed
         // TODO add your handling code here:
-        
+
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("importer la clé");
 
-    int returnValue = fileChooser.showOpenDialog(this);
+        int returnValue = fileChooser.showOpenDialog(this);
 
-    if (returnValue == JFileChooser.APPROVE_OPTION) {
-        cle = fileChooser.getSelectedFile();
-        // Vous pouvez maintenant utiliser le "selectedFile" pour traiter le fichier importé, par exemple le lire ou le manipuler.
-        keyName.setText(cle.getName());
-        // Vous pouvez également afficher le chemin du fichier dans un JTextField ou JLabel si vous le souhaitez.
-    }
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            cle = fileChooser.getSelectedFile();
+            // Vous pouvez maintenant utiliser le "selectedFile" pour traiter le fichier importé, par exemple le lire ou le manipuler.
+            keyName.setText(cle.getName());
+            // Vous pouvez également afficher le chemin du fichier dans un JTextField ou JLabel si vous le souhaitez.
+        }
     }//GEN-LAST:event_typeKeyActionPerformed
 
     private void hachTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hachTypeActionPerformed
         // TODO add your handling code here:
-        String [] macAlgoDigest = {"Fonction de Hachage","HmacMD5", "HmacSHA1", "HmacSHA256", "HmacSHA512"}; 
-        String [] mdAlgoDigest = {"Fonction de Hachage","MD5","SHA1","SHA-256", "SHA-512"}; 
-        String [] AlgoVerifHash = {"Fonction de Hachage","MD5","SHA1","SHA-256", "SHA-512","HmacMD5", "HmacSHA1", "HmacSHA256", "HmacSHA512"};
-        String [] algo = {"Type de Clé", "AES", "DES"};
+        String[] macAlgoDigest = {"Fonction de Hachage", "HmacMD5", "HmacSHA1", "HmacSHA256", "HmacSHA512"};
+        String[] mdAlgoDigest = {"Fonction de Hachage", "MD5", "SHA1", "SHA-256", "SHA-512"};
+        String[] AlgoVerifHash = {"Fonction de Hachage", "MD5", "SHA1", "SHA-256", "SHA-512", "HmacMD5", "HmacSHA1", "HmacSHA256", "HmacSHA512"};
+        String[] algo = {"Type de Clé", "AES", "DES"};
         String selectItem = (String) hachType.getSelectedItem();
         if (selectItem.equals("Message Authentication Code (Mac)")) {
             typeKey.setEnabled(true);
@@ -536,7 +536,7 @@ public class Hachage extends javax.swing.JFrame {
             keyName.setText("");
             fileName.setText("");
             hashName.setText("");
-        }else if (selectItem.equals("Message Digest (MD)")){
+        } else if (selectItem.equals("Message Digest (MD)")) {
             typeKey.setEnabled(false);
             hachFonction.setModel(new javax.swing.DefaultComboBoxModel<>(mdAlgoDigest));
             headerIndicator.setText("Cette méthode (Message Digest) permet de Hacher un fichier,text,... avec une fonction de hachage");
@@ -546,8 +546,8 @@ public class Hachage extends javax.swing.JFrame {
             keyName.setText("");
             fileName.setText("");
             hashName.setText("");
-            
-        }else if(selectItem.equals("Vérification d'un hash")){
+
+        } else if (selectItem.equals("Vérification d'un hash")) {
             hachFonction.setModel(new javax.swing.DefaultComboBoxModel<>(AlgoVerifHash));
             headerIndicator.setText("La vérification d'un hash permet de vérifier l'intégrité du fichier hashé");
             hachSave.setText("Vérification");
@@ -556,9 +556,9 @@ public class Hachage extends javax.swing.JFrame {
             keyName.setText("");
             fileName.setText("");
             hashName.setText("");
-        }else{
+        } else {
             typeKey.setEnabled(false);
-            hachFonction.setModel(new javax.swing.DefaultComboBoxModel<>(new String [] {"Fonction de Hachage"}));
+            hachFonction.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Fonction de Hachage"}));
             headerIndicator.setText("Choisir votre type de hachage");
             pathStoreHach.setText("");
             keyName.setText("");
@@ -570,140 +570,140 @@ public class Hachage extends javax.swing.JFrame {
 
     private void hachFonctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hachFonctionActionPerformed
         // TODO add your handling code here:
-            verif = (String) hachFonction.getSelectedItem();
-            if (verif.startsWith("Hmac")) {
-                typeKey.setEnabled(true);
-            }else if (verif.startsWith("SHA") || verif.equals("MD5")) {
-                typeKey.setEnabled(false);
-            }else{
-                typeKey.setEnabled(false);
-            }
-        
+        verif = (String) hachFonction.getSelectedItem();
+        if (verif.startsWith("Hmac")) {
+            typeKey.setEnabled(true);
+        } else if (verif.startsWith("SHA") || verif.equals("MD5")) {
+            typeKey.setEnabled(false);
+        } else {
+            typeKey.setEnabled(false);
+        }
+
     }//GEN-LAST:event_hachFonctionActionPerformed
 
     private void importFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importFileActionPerformed
         // TODO add your handling code here:
-        
+
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("importer le fichier à hacher");
 
-    int returnValue = fileChooser.showOpenDialog(this);
+        int returnValue = fileChooser.showOpenDialog(this);
 
-    if (returnValue == JFileChooser.APPROVE_OPTION) {
-        fileToHache = fileChooser.getSelectedFile();
-        // Vous pouvez maintenant utiliser le "selectedFile" pour traiter le fichier importé, par exemple le lire ou le manipuler.
-        fileName.setText(fileToHache.getName());
-        // Vous pouvez également afficher le chemin du fichier dans un JTextField ou JLabel si vous le souhaitez.
-    }
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            fileToHache = fileChooser.getSelectedFile();
+            // Vous pouvez maintenant utiliser le "selectedFile" pour traiter le fichier importé, par exemple le lire ou le manipuler.
+            fileName.setText(fileToHache.getName());
+            // Vous pouvez également afficher le chemin du fichier dans un JTextField ou JLabel si vous le souhaitez.
+        }
     }//GEN-LAST:event_importFileActionPerformed
 
     private void hachSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hachSaveActionPerformed
         // TODO add your handling code here:
         if (hachSave.getText().equals("Hacher et Enregistrer")) {
             String selectItem = (String) hachType.getSelectedItem();
-        
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Enregistrer le fichier haché");
-    int returnValue = fileChooser.showSaveDialog(this);
-    
-    if (returnValue == JFileChooser.APPROVE_OPTION) {
-        try {
-            File fileToSave = fileChooser.getSelectedFile();
-            if (selectItem.equals("Message Digest (MD)")) {
-                HachInput.getAndSaveMD(fileToHache.getAbsolutePath(), (String) hachFonction.getSelectedItem() , fileToSave.getAbsolutePath());
-                
-                pathStoreHach.setText("Fichier haché et enregistré vers: "+fileToSave.getAbsolutePath());
-                fileName.setText("");
-                keyName.setText("");
-                
-                Frame frame = new JFrame("Informations");
-                         JOptionPane.showMessageDialog(frame,
-                "Hachage effectué avec succés",
-                "Information",
-                JOptionPane.INFORMATION_MESSAGE);
-            }else if(selectItem.equals("Message Authentication Code (Mac)")){
-                HachInput.getAndSaveMac(fileToHache.getAbsolutePath(), 
-                                        (String) hachFonction.getSelectedItem(), 
-                                        cle.getAbsolutePath(), 
-                                        (String) typeKey.getSelectedItem(), fileToSave.getAbsolutePath());
-                 pathStoreHach.setText("Fichier haché et enregistré vers: "+fileToSave.getAbsolutePath());
-                 fileName.setText("");
-                keyName.setText("");
-                JFrame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Hachage effectué avec succés",
-                "Information",
-                JOptionPane.INFORMATION_MESSAGE);
-            }else{
-               System.out.println("Veuillez vérifier l'algorithme et réessayer.");
-             JFrame frame = new JFrame("Exemple de boîte de dialogue");
-                         JOptionPane.showMessageDialog(frame,
-                "Veuillez vérifier le type de hachage et l'agorithme puis réessayer",
-                "Message d'erreur",
-                JOptionPane.ERROR_MESSAGE);
-             
+
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Enregistrer le fichier haché");
+            int returnValue = fileChooser.showSaveDialog(this);
+
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                try {
+                    File fileToSave = fileChooser.getSelectedFile();
+                    if (selectItem.equals("Message Digest (MD)")) {
+                        HachInput.getAndSaveMD(fileToHache.getAbsolutePath(), (String) hachFonction.getSelectedItem(), fileToSave.getAbsolutePath());
+
+                        pathStoreHach.setText("Fichier haché et enregistré vers: " + fileToSave.getAbsolutePath());
+                        fileName.setText("");
+                        keyName.setText("");
+
+                        Frame frame = new JFrame("Informations");
+                        JOptionPane.showMessageDialog(frame,
+                                "Hachage effectué avec succés",
+                                "Information",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    } else if (selectItem.equals("Message Authentication Code (Mac)")) {
+                        HachInput.getAndSaveMac(fileToHache.getAbsolutePath(),
+                                (String) hachFonction.getSelectedItem(),
+                                cle.getAbsolutePath(),
+                                (String) typeKey.getSelectedItem(), fileToSave.getAbsolutePath());
+                        pathStoreHach.setText("Fichier haché et enregistré vers: " + fileToSave.getAbsolutePath());
+                        fileName.setText("");
+                        keyName.setText("");
+                        JFrame frame = new JFrame("Exemple de boîte de dialogue");
+                        JOptionPane.showMessageDialog(frame,
+                                "Hachage effectué avec succés",
+                                "Information",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        System.out.println("Veuillez vérifier l'algorithme et réessayer.");
+                        JFrame frame = new JFrame("Exemple de boîte de dialogue");
+                        JOptionPane.showMessageDialog(frame,
+                                "Veuillez vérifier le type de hachage et l'agorithme puis réessayer",
+                                "Message d'erreur",
+                                JOptionPane.ERROR_MESSAGE);
+
+                    }
+
+                } catch (Exception ex) {
+                    JFrame frame = new JFrame("Erreur");
+                    JOptionPane.showMessageDialog(frame,
+                            "Veuillez vérifier les paramètre puis réessayer",
+                            "Message d'erreur",
+                            JOptionPane.ERROR_MESSAGE);
+                    ex.printStackTrace();
+                }
             }
-            
-        }catch (Exception ex){
-            JFrame frame = new JFrame("Erreur");
-                         JOptionPane.showMessageDialog(frame,
-                "Veuillez vérifier les paramètre puis réessayer",
-                "Message d'erreur",
-                JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
-        }
-    }
-        }else{
+        } else {
             boolean b = false;
             if (verif.startsWith("Hmac")) {
-               
+
                 try {
-                    b = HachInput.getHashMac(fileToHache.getAbsolutePath(), 
-                                        fileHach.getAbsolutePath(), 
-                                        verif, cle.getAbsolutePath(),
-                                        (String) typeKey.getSelectedItem());
+                    b = HachInput.getHashMac(fileToHache.getAbsolutePath(),
+                            fileHach.getAbsolutePath(),
+                            verif, cle.getAbsolutePath(),
+                            (String) typeKey.getSelectedItem());
                     if (b) {
                         JFrame frame = new JFrame("Informations");
-                         JOptionPane.showMessageDialog(frame,
-                "Le fichier n'a subi aucune modification",
-                "Informations",
-                JOptionPane.INFORMATION_MESSAGE);
-                    }else{
+                        JOptionPane.showMessageDialog(frame,
+                                "Le fichier n'a subi aucune modification",
+                                "Informations",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    } else {
                         JFrame frame = new JFrame("Avertissement");
-                         JOptionPane.showMessageDialog(frame,
-                "Le fichier n'est pas intègre",
-                "Avertissement",
-                JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(frame,
+                                "Le fichier n'est pas intègre",
+                                "Avertissement",
+                                JOptionPane.WARNING_MESSAGE);
                     }
                 } catch (Exception ex) {
                     Logger.getLogger(Hachage.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-            }else if (verif.startsWith("SHA") || verif.equals("MD5")) {
+
+            } else if (verif.startsWith("SHA") || verif.equals("MD5")) {
                 try {
-                    b = HachInput.getHashMd(fileToHache.getAbsolutePath(),fileHach.getAbsolutePath(),  Hachage.verif);
+                    b = HachInput.getHashMd(fileToHache.getAbsolutePath(), fileHach.getAbsolutePath(), Hachage.verif);
                     if (b) {
                         JFrame frame = new JFrame("Informations");
-                         JOptionPane.showMessageDialog(frame,
-                "Le fichier n'a subi aucune modification",
-                "Informations",
-                JOptionPane.INFORMATION_MESSAGE);
-                    }else{
+                        JOptionPane.showMessageDialog(frame,
+                                "Le fichier n'a subi aucune modification",
+                                "Informations",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    } else {
                         JFrame frame = new JFrame("Avertissement");
-                         JOptionPane.showMessageDialog(frame,
-                "Le fichier n'est pas intègre",
-                "Avertissement",
-                JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(frame,
+                                "Le fichier n'est pas intègre",
+                                "Avertissement",
+                                JOptionPane.WARNING_MESSAGE);
                     }
                 } catch (Exception ex) {
                     Logger.getLogger(Hachage.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }else{
-                
+            } else {
+
             }
-        
+
         }
-        
+
     }//GEN-LAST:event_hachSaveActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -727,17 +727,17 @@ public class Hachage extends javax.swing.JFrame {
 
     private void importHachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importHachActionPerformed
         // TODO add your handling code here:
-         JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("importer le fichier à hacher");
 
-    int returnValue = fileChooser.showOpenDialog(this);
+        int returnValue = fileChooser.showOpenDialog(this);
 
-    if (returnValue == JFileChooser.APPROVE_OPTION) {
-        fileHach = fileChooser.getSelectedFile();
-        // Vous pouvez maintenant utiliser le "selectedFile" pour traiter le fichier importé, par exemple le lire ou le manipuler.
-        hashName.setText(fileHach.getName());
-        // Vous pouvez également afficher le chemin du fichier dans un JTextField ou JLabel si vous le souhaitez.
-    }
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            fileHach = fileChooser.getSelectedFile();
+            // Vous pouvez maintenant utiliser le "selectedFile" pour traiter le fichier importé, par exemple le lire ou le manipuler.
+            hashName.setText(fileHach.getName());
+            // Vous pouvez également afficher le chemin du fichier dans un JTextField ou JLabel si vous le souhaitez.
+        }
     }//GEN-LAST:event_importHachActionPerformed
 
     /**

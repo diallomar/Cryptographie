@@ -25,7 +25,8 @@ public class ChiffrementEnLive extends javax.swing.JFrame {
      */
     private static SecretKey key = null;
     private static String choice;
-    private static byte [] text;
+    private static byte[] text;
+
     public ChiffrementEnLive() {
         initComponents();
     }
@@ -502,17 +503,15 @@ public class ChiffrementEnLive extends javax.swing.JFrame {
 
     private void typeCipherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeCipherActionPerformed
         // TODO add your handling code here:
-        String [] algorithme = {"Algorithme"};
-        String [] algo = {"Algorithme","AES-128","AES-192","AES-256", "DES-56"};
-        String [] fonctionHachage = {"Fonction de Hachage","MD5","SHA1","SHA-256", "SHA-512"};
-        
+        String[] algorithme = {"Algorithme"};
+        String[] algo = {"Algorithme", "AES-128", "AES-192", "AES-256", "DES-56"};
+        String[] fonctionHachage = {"Fonction de Hachage", "MD5", "SHA1", "SHA-256", "SHA-512"};
+
         // Ajout d'un gestionnaire d'événements ActionListener à la JComboBox
-
         // Code pour gérer l'action lorsqu'un élément est sélectionné
-
         String selectedItem = (String) typeCipher.getSelectedItem();
         if (selectedItem.equals("Chiffrement")) {
-            algoSelected.setModel(new javax.swing.DefaultComboBoxModel<> (algo));
+            algoSelected.setModel(new javax.swing.DefaultComboBoxModel<>(algo));
             headerIndicator.setText("Veuillez choisir votre clé secrète");
             cipherOrDecipherOrHach.setText("Chiffrer");
             cipherOrDecipherOrHach.setEnabled(false);
@@ -527,16 +526,15 @@ public class ChiffrementEnLive extends javax.swing.JFrame {
             plainLabel.setText("Text Chiffré");
             cipherLabel.setText("Text Clair");
         } else if (selectedItem.equals("Hachage")) {
-            algoSelected.setModel(new javax.swing.DefaultComboBoxModel<> (fonctionHachage));
+            algoSelected.setModel(new javax.swing.DefaultComboBoxModel<>(fonctionHachage));
             headerIndicator.setText("Veuillez choisir votre fonction de hachage ");
             cipherOrDecipherOrHach.setText("Hacher");
             algoSelected.setEnabled(true);
             cipherOrDecipherOrHach.setEnabled(false);
             plainLabel.setText("Text Clair");
             cipherLabel.setText("Empreinte");
-        }
-        else{
-            algoSelected.setModel(new javax.swing.DefaultComboBoxModel<> (algorithme));
+        } else {
+            algoSelected.setModel(new javax.swing.DefaultComboBoxModel<>(algorithme));
             headerIndicator.setText("Choisissez votre opération");
             cipherOrDecipherOrHach.setText("opération");
             cipherOrDecipherOrHach.setEnabled(false);
@@ -548,7 +546,7 @@ public class ChiffrementEnLive extends javax.swing.JFrame {
         String operationType = (String) typeCipher.getSelectedItem();
         String algo = (String) algoSelected.getSelectedItem();
         if (operationType.equals("Chiffrement")) {
-            
+
             int taille = 0;
             switch (algo) {
                 case "AES-128":
@@ -577,41 +575,38 @@ public class ChiffrementEnLive extends javax.swing.JFrame {
                 key = kg.generateKey();
                 text = CipherDeciperLive.cipherLive(plainTxt.getText(), key, choice);
                 CipherTxt.setText(Utils.toHex(text));
-                
-                
+
             } catch (Exception ex) {
-              JOptionPane.showMessageDialog(rootPane,
-                "Une erreur s'est produite veuillez réessayer SVP!.",
-                "Message d'erreur",
-                JOptionPane.ERROR_MESSAGE);
-              ex.printStackTrace();
+                JOptionPane.showMessageDialog(rootPane,
+                        "Une erreur s'est produite veuillez réessayer SVP!.",
+                        "Message d'erreur",
+                        JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
             }
-           
-        } else if(operationType.equals("Déchiffrement"))
-        {
+
+        } else if (operationType.equals("Déchiffrement")) {
             try {
                 text = Utils.fromHex(plainTxt.getText());
                 String chiff = CipherDeciperLive.decipherLive(text, key, choice);
                 CipherTxt.setText(chiff);
-                
+
             } catch (Exception ex) {
-                if (key==null){
+                if (key == null) {
                     JOptionPane.showMessageDialog(rootPane,
-                "Veuillez d'abord chiffer un message.",
-                "Avertissement",
-                JOptionPane.WARNING_MESSAGE);
-                }else{
+                            "Veuillez d'abord chiffer un message.",
+                            "Avertissement",
+                            JOptionPane.WARNING_MESSAGE);
+                } else {
                     JOptionPane.showMessageDialog(rootPane,
-                "Veuillez donner le chiffré exacte.",
-                "Avertissement",
-                JOptionPane.WARNING_MESSAGE);
+                            "Veuillez donner le chiffré exacte.",
+                            "Avertissement",
+                            JOptionPane.WARNING_MESSAGE);
                 }
-                
+
                 ex.printStackTrace();
-                
+
             }
-        }else if(operationType.equals("Hachage"))
-        {
+        } else if (operationType.equals("Hachage")) {
             try {
                 String hach = CipherDeciperLive.hachLive(plainTxt.getText(), algo);
                 CipherTxt.setText(hach);
