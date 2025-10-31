@@ -1,11 +1,11 @@
 -- Suppression de la base de données si elle existe déjà
-DROP DATABASE IF EXISTS oumardiallo;
+DROP DATABASE IF EXISTS database_crypto;
 
 -- Création de la base de données
-CREATE DATABASE oumardiallo;
+CREATE DATABASE database_crypto;
 
 -- Selection de la base de données
-USE oumardiallo;
+USE database_crypto;
 
 -- Creation de la table "utilisateurs"
 CREATE TABLE utilisateurs (
