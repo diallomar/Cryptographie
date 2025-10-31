@@ -21,7 +21,7 @@ public class DataBase {
     Connection con = null;
         try {
             Class.forName("org.postgresql.Driver");
-            con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/oumarDiallo", "postgres", "1206");
+            con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/oumarDiallo", "postgres", "1234");
         } catch (Exception e) {
             System.out.println(e);
         }
